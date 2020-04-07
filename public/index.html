@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <script type="text/javascript" src="../src/main.js"></script>
+    <script type="text/javascript" src="http://localhost:8080/tribefire-js/tribefire.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <title><%= htmlWebpackPlugin.options.title %></title>
+    
+    <style>
+            html,body,iframe {padding:0;margin:0;height:100%;width:100%};
+            iframe {border:none};
+            
+    </style>
+      
+    <script>
+            window.onload=function(){
+                queryString = window.location.search;
+                urlParams = new URLSearchParams(queryString);
+                path = urlParams.get('path')
+                console.log(path);
+                
+                iframe = document.getElementById("tfjs-app");
+                script = iframe.contentWindow.document.createElement("script");
+                script.type = "module";
+
+                script.src = path;
+                iframe.contentWindow.document.head.appendChild(script);
+            }
+    </script>	
+    
+  </head>
+  <body style="background-color: #2c3e50;">
+     <iframe id="tfjs-app"> 		
+        <noscript>
+            <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+        </noscript>
+        <!-- <div id="app"></div> -->              
+        <!-- built files will be auto injected -->
+     </iframe> 
+  </body>
+</html>
